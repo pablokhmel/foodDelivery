@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Beer: Decodable {
-    var id: Int
-    var name: String
-    var description: String
-    var image_url: String
-    var abv: AbvCategory
+@objcMembers class Beer: Object, Decodable {
+    dynamic var id: Int
+    dynamic var name: String
+    dynamic var tagline: String
+    dynamic var image_url: String
+    dynamic var abv: AbvCategory
 }
 
 enum AbvCategory: Double, Decodable {

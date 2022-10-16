@@ -100,7 +100,7 @@ class BeerCell: UITableViewCell {
         beer.subscribe(onNext: { value in
             self.titleLabel.rx.text.onNext(value.name)
 
-            self.descriptionLabel.rx.text.onNext(value.description)
+            self.descriptionLabel.rx.text.onNext(value.tagline)
 
             let url = URL(string: value.image_url)
             self.beerImageView.sd_setImage(with: url)

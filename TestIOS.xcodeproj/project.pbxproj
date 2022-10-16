@@ -21,6 +21,7 @@
 		FAF774B728FACD5A000BD1AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF774B628FACD5A000BD1AC /* Constants.swift */; };
 		FAF774B928FACE7E000BD1AC /* DiscountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF774B828FACE7E000BD1AC /* DiscountCell.swift */; };
 		FAF774BB28FAD570000BD1AC /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF774BA28FAD570000BD1AC /* TypeCell.swift */; };
+		FAF774BD28FC734E000BD1AC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF774BC28FC734E000BD1AC /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FAF774B628FACD5A000BD1AC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FAF774B828FACE7E000BD1AC /* DiscountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCell.swift; sourceTree = "<group>"; };
 		FAF774BA28FAD570000BD1AC /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
+		FAF774BC28FC734E000BD1AC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				FAED8BB028FAB3490042C48E /* APIService.swift */,
+				FAF774BC28FC734E000BD1AC /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				FAED8BB628FAB4E70042C48E /* Beer.swift in Sources */,
 				FAF774B328FABD33000BD1AC /* BeerCell.swift in Sources */,
 				FAED8BB328FAB46F0042C48E /* MainVM.swift in Sources */,
+				FAF774BD28FC734E000BD1AC /* RealmService.swift in Sources */,
 				FAED8B9A28FAA86E0042C48E /* AppDelegate.swift in Sources */,
 				FAED8BB128FAB3490042C48E /* APIService.swift in Sources */,
 				FAED8B9C28FAA86E0042C48E /* SceneDelegate.swift in Sources */,

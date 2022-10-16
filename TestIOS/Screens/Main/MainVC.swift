@@ -97,6 +97,24 @@ class MainVC: UIViewController {
             self.topBar.offset.onNext(offset)
         }
             .disposed(by: disposeBag)
+
+        viewModel.noInternet.bind { value in
+            if value {
+                self.showNoInternetError()
+            }
+        }.disposed(by: disposeBag)
+    }
+
+    private func showNoInternetError() {
+        let alert = UIAlertController(title: "Error", message: "There is error. We loaded items from last connection", preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "OK", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+
+        alert.addAction(action)
+
+        present(alert, animated: true)
     }
 }
 

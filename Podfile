@@ -9,6 +9,7 @@ target 'TestIOS' do
   pod 'RxSwift', '6.5.0'
   pod 'RxCocoa', '6.5.0'
   pod 'Realm'
+  pod 'RealmSwift'
   pod 'Moya'
   pod 'Alamofire'
   pod 'SDWebImage'

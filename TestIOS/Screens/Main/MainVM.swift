@@ -14,6 +14,7 @@ class MainVM {
     public private(set) var beers = BehaviorSubject(value: [Beer]())
     private var allBeers = BehaviorSubject(value: [Beer]())
 
+    public let noInternet = BehaviorSubject(value: false)
     public let type = BehaviorSubject<AbvCategory?>(value: nil)
 
     init() {
@@ -36,8 +37,11 @@ class MainVM {
             case .success(let response):
                 guard let tokenResponse = try? response.map([Beer].self) else { return }
                 self?.addBeers(tokenResponse)
+                self?.addBeersToRealm(tokenResponse)
 
             case .failure(let error):
+                self?.noInternet.onNext(true)
+                self?.getBeersFromRealm()
                 print(error)
             }
         }
@@ -59,5 +63,14 @@ class MainVM {
         } else {
             beers.onNext(value)
         }
+    }
+
+    private func addBeersToRealm(_ beers: [Beer]) {
+        beers.forEach { RealmService.shared.addBeer(model: $0) }
+    }
+
+    private func getBeersFromRealm() {
+        let beers = RealmService.shared.getBeers()
+        allBeers.onNext(beers)
     }
 }
