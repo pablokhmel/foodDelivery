@@ -13,6 +13,12 @@ class MainVC: UIViewController {
     let disposeBag = DisposeBag()
     private let viewModel: MainVM
 
+    private lazy var topBar: TopBar = {
+        let view = TopBar()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private lazy var activityView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.startAnimating()
@@ -40,21 +46,26 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.background
         setupViews()
         bindRx()
         viewModel.getBeers()
     }
 
     private func setupViews() {
+        view.addSubview(topBar)
         view.addSubview(activityView)
         view.addSubview(beersTableView)
 
         NSLayoutConstraint.activate([
+            topBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            beersTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            beersTableView.topAnchor.constraint(equalTo: topBar.bottomAnchor),
             beersTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             beersTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             beersTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -73,6 +84,19 @@ class MainVC: UIViewController {
             cell.beer.onNext(model)
         }
         .disposed(by: disposeBag)
+
+        topBar.type.subscribe(onNext: { value in
+            self.viewModel.type.onNext(value)
+        }).disposed(by: disposeBag)
+
+        beersTableView
+            .rx
+            .didScroll
+            .bind {
+            let offset = self.beersTableView.contentOffset.y
+            self.topBar.offset.onNext(offset)
+        }
+            .disposed(by: disposeBag)
     }
 }
 
